@@ -24,6 +24,8 @@ services:
       - mariadb
   clientemqtt:
     image: clientemqtt
+    build:
+      context: ./clienteMqtt
     container_name: clientemqtt
     environment:
       - TZ=America/Argentina/Buenos_Aires 
@@ -44,3 +46,6 @@ services:
       - 1883:1883
       - 8883:8883
     restart: unless-stopped
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/config:/mosquitto/config
